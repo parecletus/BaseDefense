@@ -2,33 +2,32 @@ namespace Player;
 
 using Raylib_cs;
 using System.Numerics;
-using Gun;
+using Input;
 public class Player
 {
     public Vector2 position;
-    public int MoveSpeed;
-    public Player(Vector2 _position, int _Movespeed=200)
+    private int MoveSpeed;
+    public int radius;
+    public Player(float posx, float posy,int _radius =4 , int _Movespeed=200)
     {
-        position = _position;
+        position = new Vector2(posx, posy);
         MoveSpeed = _Movespeed;
+        radius = _radius;
     }
-    public void Update(float dt)
+    public void Update(float dt,Input input)
     {
-        CheckInput(dt);
-    }
-    void CheckInput(float dt)
-    {
-        if (Raylib.IsKeyDown(KeyboardKey.Left))
+        
+        if (input.MoveLeft)
         {
             position.X += dt * MoveSpeed * -1;
         }
-        if (Raylib.IsKeyDown(KeyboardKey.Right))
+        if (input.MoveRight)
         {
             position.X += dt * MoveSpeed * 1;
         }
     }
     public void Draw()
     {
-        Raylib.DrawCircle((int)position.X,(int) position.Y, 4, Color.Green);
+        Raylib.DrawCircle((int)position.X,(int) position.Y, radius, Color.Green);
     }
 }

@@ -2,16 +2,20 @@ namespace Entity;
 
 using System.Numerics;
 using Raylib_cs;
+using windowsetting;
 public abstract class Entity
 {
-    protected int Move_speed;
+    protected static Vector2 windowsize => windowsetting.windowsize;
+
+    protected float Move_speed;
     public Vector2 position;
     public bool Is_Active;
     int width;
     int height;
-    Color color;
-    Dictionary<int, Color> Base_Colors = new Dictionary<int, Color> { [0]=Color.Green, [1]=Color.Red, [2]= Color.White };
-    public Entity(int _ms, Vector2 _pos, int _width, int _height, int color_index=0)
+    public Color color;
+    public Vector2 Size => new(width, height);
+    Dictionary<int, Color> Base_Colors = new Dictionary<int, Color> { [0] = Color.Green, [1] = Color.Red, [2] = Color.White };
+    public Entity(float _ms, Vector2 _pos, int _width, int _height, int color_index = 0)
     {
         Move_speed = _ms;
         position = _pos;
@@ -22,11 +26,15 @@ public abstract class Entity
     }
     public void Draw()
     {
-        Raylib.DrawRectangle((int)position.X, (int)position.Y, width, height, color);
+        if (Is_Active)
+            Raylib.DrawRectanglePro(
+     new Rectangle(position.X, position.Y, width, height),
+     Vector2.Zero, 0f, color);
     }
     public void Move(Vector2 dir, float dt)
     {
-        if (Is_Active)
+        // add offline Const.
+        if (Is_Active && position.X + 20 < windowsize.X && position.Y + 20 < windowsize.Y)
         {
             position.X += dir.X * Move_speed * dt;
             position.Y += dir.Y * Move_speed * dt;
