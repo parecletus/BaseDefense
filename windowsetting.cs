@@ -15,14 +15,14 @@ public class windowsetting
     {
         windowsize = new Vector2(x, y);
     }
-    public void UpdateExpBar(int Exp)
+    public void UpdateExpBar(float Exp)
     {
         if (ExpCount >= windowsize.X)
         {
             FreezeState = true;
             return;
         }
-        ExpCount += Exp / 10;
+        ExpCount += Exp ;
     }
     public void Reset_Exp()
     {
@@ -40,7 +40,8 @@ public class windowsetting
         const int area = 30 ;
         Vector2 position = new Vector2 ((int)windowsize.X-area-10  , area);
         Raylib.DrawRectangle((int)position.X,(int) position.Y,area,area, Color.Gray);
-        Raylib.DrawText("Q to Menu",(int)position.X +area/10,(int)position.Y +area/4,10,Color.White);
+        Raylib.DrawText("Q",(int)position.X +area/10,(int)position.Y +area/4,10,Color.White);
+        
 
     }
 }

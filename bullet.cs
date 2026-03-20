@@ -11,7 +11,7 @@ public class Bullet : Entity
     private Vector2 trailPosition;
     
     public Bullet(float _MoveSpeed, Vector2 _position, Vector2 _dir, float _bulletdmg,int _penetrationCount = 1
-    , float _timer_con = 2, int width = 5, int height = 5) : base(_MoveSpeed, _position, width, height)
+    , float _timer_con = 4, int width = 5, int height = 5) : base(_MoveSpeed, _position, width, height)
     {
         dir = _dir;
         timer_con = _timer_con;

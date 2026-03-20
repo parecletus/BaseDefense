@@ -31,7 +31,7 @@ public class Logic
                         
                         // if its dead
                         if (!EList_InCell[y].Is_Active)CSystem.Spawn(EList_InCell[y].position); 
-                        TextSystem.CreateText(bullet.position.X, bullet.position.Y, bullet.Damage.ToString());
+                        TextSystem.CreateText(bullet.position.X, bullet.position.Y, MathF.Round(bullet.Damage).ToString());
                         break;
                     }
                 }

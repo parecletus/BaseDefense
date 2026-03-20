@@ -125,13 +125,13 @@ public class Grid
             // Vertical lines
             for (int x = 0; x <= windowx; x += Grid_scale)
             {
-                Raylib.DrawLine(x, 0, x, windowy, Color.White);
+                Raylib.DrawLine(x, 0, x, windowy, Color.Gray);
             }
 
             // Horizontal lines
             for (int y = 0; y <= windowy; y += Grid_scale)
             {
-                Raylib.DrawLine(0, y, windowx, y, Color.Gold);
+                Raylib.DrawLine(0, y, windowx, y, Color.DarkGray);
             }
         }
     }

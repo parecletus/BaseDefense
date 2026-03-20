@@ -34,7 +34,7 @@ public abstract class Entity
     public void Move(Vector2 dir, float dt)
     {
         // add offline Const.
-        if (Is_Active && position.X + 20 < windowsize.X && position.Y + 20 < windowsize.Y)
+        if (Is_Active && position.X  < windowsize.X && position.Y  < windowsize.Y)
         {
             position.X += dir.X * Move_speed * dt;
             position.Y += dir.Y * Move_speed * dt;

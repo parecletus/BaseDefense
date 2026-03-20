@@ -9,7 +9,6 @@ public class GunEntity
     private delegate List<Bullet> Delegate_Update(Vector2 dir, Vector2 position);
     private readonly Delegate_Update tick;
 
-    private const int GUNOFFSET = 0; // I like the visuals of bullets spawning in front of player
     private float firerate;
     private float bullet_dmg;
     private  float bullet_speed;
@@ -37,14 +36,7 @@ public class GunEntity
         bullet_dmg *= percentBulletDmg;
         bullet_speed *= percentBulletSpeed;
         bulletcount_pershot += _bulletcount; 
-        Console.WriteLine("New bullet damage " +bullet_dmg );
-        Console.WriteLine("New bullet speed " +bullet_speed );
-        Console.WriteLine("New firerate " +firerate );
     }
-    // public void UpdateTimer(float newTimerRate)
-    // {
-    //     ShootRate = new Timer(newTimerRate);
-    // }
 
     public bool GunShootUpdate(float dt)
     {
@@ -67,7 +59,7 @@ public class GunEntity
         for (int i = 0; i < bulletcount_pershot; i++)
         {
             float offset = start + i * bullet_positionoffset;
-            Vector2 pos = new Vector2(position.X + offset, position.Y - GUNOFFSET);
+            Vector2 pos = new Vector2(position.X + offset, position.Y);
 
             bullets.Add(new Bullet(bullet_speed, pos, direction, bullet_dmg));
         }

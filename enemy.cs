@@ -2,6 +2,7 @@ namespace Enemy;
 
 using System.Numerics;
 using Entity;
+using windowsetting;
 public class Enemy : Entity
 {
     public Vector2 dir;
@@ -15,7 +16,7 @@ public class Enemy : Entity
     }
     public void Update(float dt)
     {
-        Move(dir, dt);
+        if (position.Y<windowsetting.windowsize.Y-60) Move(dir, dt);
     }
     public void GotHit(float dmg)
     {

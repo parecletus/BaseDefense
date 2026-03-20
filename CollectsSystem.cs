@@ -6,7 +6,8 @@ using windowsetting;
 public class CollectSystem
 {
     List<ExpCube> cubelist = new();
-    public int ExpCount = 1000;
+    public int ExpCount = 100;
+    public float sinceGameStarted = 0;
     public void Spawn(int posx, int posy)
     {
         ExpCube cube = new(posx, posy);
@@ -19,6 +20,7 @@ public class CollectSystem
     }
     public void Update(float dt, windowsetting windowsetting)
     {
+        sinceGameStarted += dt;
         if (cubelist.Count > 0)
         {
             for (int i = cubelist.Count - 1; i >= 0; i--)
@@ -27,7 +29,7 @@ public class CollectSystem
                 cube.MoveUp(dt);
                 if (cube.position.Y <= 0 || !cube.is_Active)
                 {
-                    windowsetting.UpdateExpBar(ExpCount);
+                    windowsetting.UpdateExpBar(ExpCount* 1/(sinceGameStarted));
                     cubelist.RemoveAt(i);
                 }
             }

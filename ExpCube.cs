@@ -10,6 +10,7 @@ public class ExpCube
     protected int radius { get; private set; }
     protected int MoveSpeed;
     public bool is_Active;
+    private float _ActiveFor;
     public ExpCube(int posx, int posy, int _radius = 1, int ms = 60)
     {
         position = new Vector2(posx, posy);
@@ -23,8 +24,9 @@ public class ExpCube
     }
     public void MoveUp(float dt)
     {
+        _ActiveFor +=dt;
         if (is_Active)
-            position.Y -= dt * MoveSpeed * 1;
+            position.Y -= dt * MoveSpeed * 1*_ActiveFor;
     }
 }
 

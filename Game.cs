@@ -16,8 +16,7 @@ public class Game
 {
     public Player player;
 
-    private Logic logic = new();
-    // private readonly InputSystem Input = new();
+    private Logic Logic = new();
     private BulletSystem BulletSystem = new();
     private EnemySystem EnemySystem = new();
     private CollectSystem CollectSystem = new();
@@ -37,18 +36,17 @@ public class Game
 
     public void Update(float dt, Input State)
     {
-
         if (!Window.FreezeState) // game running
         {
             player.Update(dt, State);
-            logic.CollisionCheck(FloatingText, BulletSystem, CollectSystem, grid); //there is smt wrong with coll check
+            Logic.CollisionCheck(FloatingText, BulletSystem, CollectSystem, grid); 
 
             EnemySystem.Update(dt);
-            BulletSystem.Update(dt, player.position.X, player.position.Y, logic.ClosestEnemy, gun.baseStarterGun);
+            BulletSystem.Update(dt, player.position.X, player.position.Y, Logic.ClosestEnemy, gun.baseStarterGun);
             CollectSystem.Update(dt, Window);
 
             grid.Update(EnemySystem);
-            if (update.Update(dt)) logic.FindClosestEnemy(player.position.X, player.position.Y, player.radius, grid);
+            if (update.Update(dt)) Logic.FindClosestEnemy(player.position.X, player.position.Y, player.radius, grid);
             FloatingText.Update(dt);
         }
         else // level up screen
@@ -76,7 +74,6 @@ public class Game
         {
             BulletSystem.Draw();
             EnemySystem.Draw();
-
             PowerUp.Draw();
             Window.DrawEscape();
         }
